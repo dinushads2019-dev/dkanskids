@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>D'KANS Kids English Club • ළමා ඉංග්‍රීසි පාසල</title>
+
+  <!-- Typography: Fredoka + Quicksand + Noto Sans Sinhala -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@500;600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            kids: ['"Fredoka"', '"Quicksand"', 'sans-serif'],
+            sinhala: ['"Noto Sans Sinhala"', '"Iskoola Pota"', 'sans-serif']
+          },
+          colors: {
+            candyPink: '#FF5E8E',
+            sunshineYellow: '#FFD124',
+            skyCyan: '#26D0CE',
+            magicPurple: '#8E44AD',
+            mintGreen: '#2ECC71',
+            tangerineOrange: '#FF8A3D',
+            bubbleBlue: '#1A73E8'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+    }
+
+    body {
+      font-family: 'Fredoka', 'Noto Sans Sinhala', sans-serif;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      padding-top: var(--sat);
+      user-select: none;
+    }
+
+    .sinhala-text {
+      font-family: 'Noto Sans Sinhala', sans-serif;
+    }
+
+    /* Polka Dot Kid Canvas Background */
+    .kids-bg-pattern {
+      background-color: #fdfbf7;
+      background-image: 
+        radial-gradient(#ffd124 1.5px, transparent 1.5px),
+        radial-gradient(#ff5e8e 1.5px, transparent 1.5px),
+        radial-gradient(#26d0ce 1.5px, transparent 1.5px);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px, 12px 37px;
+    }
+
+    /* Tactile 3D Bubble Buttons */
+    .bubble-btn {
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.12), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    .bubble-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+    .bubble-btn:active {
+      transform: translateY(4px) scale(0.97);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    /* Floating Toys Animation */
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+    .floating-toy {
+      animation: gentle-float 3.5s ease-in-out infinite;
+    }
+
+    /* Wiggle Animation */
+    @keyframes playful-wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-6deg); }
+      75% { transform: rotate(6deg); }
+    }
+    .wiggle-on-hover:hover {
+      animation: playful-wiggle 0.35s ease-in-out 2;
+    }
+
+    /* Microphone Pulse Animation */
+    @keyframes live-mic-glow {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 94, 142, 0.7); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 16px rgba(255, 94, 142, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 94, 142, 0); }
+    }
+    .mic-bubble-live {
+      animation: live-mic-glow 1.2s infinite;
+    }
+
+    /* Memory Card Flip Effect */
+    .memory-card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .memory-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+    .memory-card.flipped .memory-card-inner {
+      transform: rotateY(180deg);
+    }
+    .memory-card-front, .memory-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 1.5rem;
+    }
+    .memory-card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Printable Worksheet Rules */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printableWorksheetArea, #printableWorksheetArea * {
+        visibility: visible;
+      }
+      #printableWorksheetArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="kids-bg-pattern min-h-screen text-slate-800 flex flex-col justify-between pb-28 lg:pb-10">
+
+  <!-- ================= TOP MAIN HEADER ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-4 border-yellow-300 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2">
+      
+      <!-- Brand & Mascot Logo -->
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchCategory('alphabet')">
+        <div class="relative">
+          <div class="w-11 h-11 sm:w-13 sm:h-13 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 rounded-3xl p-1 shadow-lg floating-toy">
+            <div class="w-full h-full bg-white rounded-2xl flex items-center justify-center text-2xl sm:text-3xl">
+              🦁
+            </div>
+          </div>
+          <span class="absolute -bottom-1 -right-1 text-sm">🎈</span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-600 to-sky-500">
+              D'KANS Kids
+            </span>
+            <span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-yellow-300 text-yellow-900 border border-yellow-400">
+              English Club
+            </span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 sinhala-text font-bold leading-tight">
+            පුංචි පැටවුන්ගේ ඉංග්‍රීසි පාසල 🌈
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Center: Voice Switcher, Star Trophy & Parent Mode -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Teacher Voice Character Switcher -->
+        <div class="bg-amber-100/90 p-1 rounded-2xl flex items-center border-2 border-amber-300 shadow-inner">
+          <button id="btnTeacherSarah" onclick="setKidsTeacherVoice('female')" class="bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 bg-pink-500 text-white shadow-sm">
+            <span>👩‍🏫</span>
+            <span class="hidden md:inline">Sarah (ටීචර්)</span>
+          </button>
+          <button id="btnTeacherDan" onclick="setKidsTeacherVoice('male')" class="bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-700 hover:text-blue-600">
+            <span>👨‍🏫</span>
+            <span class="hidden md:inline">Dan (සර්)</span>
+          </button>
+        </div>
+
+        <!-- Star Trophy Counter & Sticker Album Trigger -->
+        <button onclick="openStickerAlbumModal()" class="bubble-btn bg-gradient-to-r from-yellow-300 to-amber-400 border-2 border-yellow-500 px-3 sm:px-4 py-1.5 rounded-2xl flex items-center gap-2 text-amber-950 font-black shadow-md cursor-pointer" title="View Star Sticker Album!">
+          <i class="fa-solid fa-star text-white text-base drop-shadow animate-spin" style="animation-duration: 5s;"></i>
+          <span id="kidTotalStarsBadge" class="text-sm sm:text-base font-extrabold tracking-wide">12</span>
+          <span class="text-[10px] bg-white/70 px-1.5 py-0.5 rounded-lg hidden sm:inline uppercase">Album</span>
+        </button>
+
+        <!-- Parent & Teacher Mode Button -->
+        <button onclick="switchCategory('parents')" class="bubble-btn bg-purple-100 hover:bg-purple-200 border-2 border-purple-300 text-purple-900 p-2 sm:px-3 sm:py-1.5 rounded-2xl flex items-center gap-1.5 text-xs font-black shadow-sm" title="Parent Dashboard & Worksheets">
+          <i class="fa-solid fa-user-shield text-purple-600 sm:text-sm"></i>
+          <span class="hidden sm:inline">Parent Hub</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= TOP THEMATIC TABS (RESPONSIVE HORIZONTAL SCROLLER) ================= -->
+  <nav class="max-w-7xl mx-auto w-full px-3 sm:px-6 pt-3 pb-2">
+    <div class="flex gap-2 sm:gap-2.5 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-none">
+      
+      <button onclick="switchCategory('alphabet')" id="tabNav-alphabet" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md">
+        <span>🔤</span><span>ABC Phonics</span>
+      </button>
+
+      <button onclick="switchCategory('body')" id="tabNav-body" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>👀</span><span>My Body (මගේ සිරුර)</span>
+      </button>
+
+      <button onclick="switchCategory('family')" id="tabNav-family" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>👨‍👩‍👧</span><span>Family (පවුල)</span>
+      </button>
+
+      <button onclick="switchCategory('school')" id="tabNav-school" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🎒</span><span>School (පාසල)</span>
+      </button>
+
+      <button onclick="switchCategory('weather')" id="tabNav-weather" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>⛅</span><span>Days & Weather (කාලගුණය)</span>
+      </button>
+
+      <button onclick="switchCategory('rhymes')" id="tabNav-rhymes" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🎶</span><span>Nursery Rhymes (ගීත)</span>
+      </button>
+
+      <button onclick="switchCategory('stories')" id="tabNav-stories" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>📖</span><span>Picture Stories (කතාන්දර)</span>
+      </button>
+
+      <button onclick="switchCategory('animals')" id="tabNav-animals" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🐾</span><span>Animals</span>
+      </button>
+
+      <button onclick="switchCategory('numbers')" id="tabNav-numbers" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🔢</span><span>Numbers</span>
+      </button>
+
+      <button onclick="switchCategory('colors')" id="tabNav-colors" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🎨</span><span>Colors & Shapes</span>
+      </button>
+
+      <button onclick="switchCategory('fruits')" id="tabNav-fruits" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🍓</span><span>Fruits & Veggies</span>
+      </button>
+
+      <button onclick="switchCategory('speechmagic')" id="tabNav-speechmagic" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🗣️</span><span>Speak Magic (කතා කරමු)</span>
+      </button>
+
+      <button onclick="switchCategory('arcade')" id="tabNav-arcade" class="bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200">
+        <span>🎮</span><span>Star Games</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="max-w-7xl mx-auto w-full px-3 sm:px-6 flex-1 py-2">
+
+    <!-- 1. ALPHABET & PHONICS SAFARI -->
+    <section id="world-alphabet" class="world-section space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-yellow-300">
+            🔤 Phonics World
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">ABC Safari: Tap, Listen & Learn!</h2>
+          <p class="text-xs sm:text-sm text-pink-100 sinhala-text font-semibold mt-1">
+            අකුර මත ඔබා එහි නිවැරදි ඉංග්‍රීසි ශබ්දය සහ වචනය අසන්න. ඔබත් ශබ්ද නගා කියවන්න!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🎪🎈</div>
+      </div>
+
+      <div id="alphabetCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"></div>
+    </section>
+
+    <!-- 2. MY WONDERFUL BODY (NEW) -->
+    <section id="world-body" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-amber-200">
+            👀 Anatomy & Health
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">My Wonderful Body! (මගේ සිරුර)</h2>
+          <p class="text-xs sm:text-sm text-teal-100 sinhala-text font-semibold mt-1">
+            ශරීරයේ කොටස් මත ඔබා ඒවායේ නම්, ශබ්දය සහ අප ඒවායින් කරන කාර්යයන් ඉගෙන ගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🧍‍♂️✨</div>
+      </div>
+
+      <div id="bodyCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 3. MY HAPPY FAMILY (NEW) -->
+    <section id="world-family" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-rose-500 via-pink-500 to-orange-400 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-yellow-300">
+            👨‍👩‍👧 Family Love
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">My Happy Family! (මගේ පවුල)</h2>
+          <p class="text-xs sm:text-sm text-pink-100 sinhala-text font-semibold mt-1">
+            පවුලේ සාමාජිකයන් හඳුන්වා දෙන ලස්සන ඉංග්‍රීසි වාක්‍ය සහ ආචාරශීලී කතාබස්!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🏡💖</div>
+      </div>
+
+      <div id="familyCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 4. MY SCHOOL & CLASSROOM (NEW) -->
+    <section id="world-school" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-amber-300">
+            🎒 Ready for Class
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">My School & Bag! (පාසල් උපකරණ)</h2>
+          <p class="text-xs sm:text-sm text-blue-100 sinhala-text font-semibold mt-1">
+            පාසලේදී සහ පන්තියේදී නිතරම භාවිතා කරන උපකරණ ඉංග්‍රීසියෙන් හඳුනාගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">📚✏️</div>
+      </div>
+
+      <div id="schoolCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 5. DAYS OF WEEK & WEATHER (NEW) -->
+    <section id="world-weather" class="world-section hidden space-y-6">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-sky-500 via-cyan-500 to-indigo-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-yellow-300">
+            ⛅ Calendar & Nature
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Days of the Week & Weather!</h2>
+          <p class="text-xs sm:text-sm text-sky-100 sinhala-text font-semibold mt-1">
+            සතියේ දින 7 සහ දවසේ කාලගුණය ගැන කතා කරන්න පුරුදු වෙමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🌈☀️</div>
+      </div>
+
+      <!-- Days of Week -->
+      <div>
+        <h3 class="text-xl font-black text-slate-800 mb-3 flex items-center gap-2">
+          <span>📅</span> <span>7 Days of the Week (සතියේ දින 7)</span>
+        </h3>
+        <div id="daysOfWeekGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3"></div>
+      </div>
+
+      <!-- Weather Station -->
+      <div class="pt-2">
+        <h3 class="text-xl font-black text-slate-800 mb-3 flex items-center gap-2">
+          <span>🌤️</span> <span>How is the Weather Today? (අද කාලගුණය කොහොමද?)</span>
+        </h3>
+        <div id="weatherCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5"></div>
+      </div>
+    </section>
+
+    <!-- 6. NURSERY RHYMES & SING-ALONG (NEW) -->
+    <section id="world-rhymes" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-400 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-white">
+            🎶 Sing-Along Karaoke
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Classic Nursery Rhymes!</h2>
+          <p class="text-xs sm:text-sm text-purple-100 sinhala-text font-semibold mt-1">
+            ලස්සන ළමා ගීත පදයෙන් පදය අසමින්, ගායනා කරමින් ඉංග්‍රීසි ඉගෙන ගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">📻🌟</div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <!-- Rhyme Selectors -->
+        <div id="rhymesListContainer" class="space-y-3"></div>
+
+        <!-- Interactive Rhyme Player & Lyrics Screen -->
+        <div id="activeRhymeDisplay" class="lg:col-span-2 bg-white rounded-3xl p-5 sm:p-7 border-4 border-yellow-300 shadow-xl space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- 7. READ-ALOUD PICTURE STORIES (NEW) -->
+    <section id="world-stories" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-white">
+            📖 2-Minute Stories
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Illustrated Moral Storybooks!</h2>
+          <p class="text-xs sm:text-sm text-amber-100 sinhala-text font-semibold mt-1">
+            චිත්‍ර සමඟ කියවන පුංචි කතාන්දර. ආදර්ශය සහ තේරුම සිංහලෙන්ද තේරුම් ගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🦊🪨</div>
+      </div>
+
+      <!-- Story Selection Bar -->
+      <div class="flex gap-2 overflow-x-auto pb-1" id="storyTabsBar"></div>
+
+      <!-- Story Stage Area -->
+      <div id="activeStoryStage" class="bg-white rounded-3xl p-5 sm:p-8 border-4 border-amber-300 shadow-xl space-y-4"></div>
+    </section>
+
+    <!-- 8. ANIMALS & SOUNDS -->
+    <section id="world-animals" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-amber-200">
+            🐾 Animal Kingdom
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Meet the Cute Animals & Their Sounds!</h2>
+          <p class="text-xs sm:text-sm text-emerald-100 sinhala-text font-semibold mt-1">
+            සතුන්ගේ නම්, ඔවුන් කෑගසන ශබ්දය සහ සිංහල තේරුම ඉගෙන ගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🐶🦁🐵</div>
+      </div>
+
+      <div id="animalsCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 9. NUMBERS & COUNTING -->
+    <section id="world-numbers" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-white">
+            🔢 1 2 3 Counting Park
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Count with Us: 1 to 20!</h2>
+          <p class="text-xs sm:text-sm text-yellow-100 sinhala-text font-semibold mt-1">
+            ඉලක්කම් මත ඔබා ඉංග්‍රීසියෙන් ගණන් කරමු. තිත් ගණන් කර තරු දිනාගන්න!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🚀⭐</div>
+      </div>
+
+      <div id="numbersCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4"></div>
+    </section>
+
+    <!-- 10. COLORS & SHAPES -->
+    <section id="world-colors" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-purple-500 via-indigo-500 to-sky-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-pink-200">
+            🎨 Rainbow Magic
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Colors & Geometric Shapes!</h2>
+          <p class="text-xs sm:text-sm text-purple-100 sinhala-text font-semibold mt-1">
+            ලස්සන පාටවල් සහ හැඩතල ඉංග්‍රීසියෙන් හඳුනාගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🌈✨</div>
+      </div>
+
+      <div id="colorsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 11. FRUITS & VEGGIES -->
+    <section id="world-fruits" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-red-500 via-pink-500 to-yellow-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-white">
+            🍓 Fruity Market
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Delicious Fruits & Vegetables!</h2>
+          <p class="text-xs sm:text-sm text-red-100 sinhala-text font-semibold mt-1">
+            අපේ ශරීරයට ගුණ දෙන රසවත් පළතුරු සහ එළවළු වල නම් ඉගෙන ගනිමු!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🍉🍍🥭</div>
+      </div>
+
+      <div id="fruitsCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- 12. SPEAK MAGIC (MIC SPEECH DRILL) -->
+    <section id="world-speechmagic" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-yellow-300">
+            🗣️ Little Talker
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Speak Magic: Talk to Win Stars!</h2>
+          <p class="text-xs sm:text-sm text-purple-100 sinhala-text font-semibold mt-1">
+            මයික්‍රෆෝනය ඔබා වාක්‍යය ශබ්ද නගා කියන්න. නිවැරදිව කී විට තරු සහ සුබ පැතුම් දිනාගන්න!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">🎤🌟</div>
+      </div>
+
+      <div id="speechSentencesList" class="space-y-3.5"></div>
+    </section>
+
+    <!-- 13. STAR ARCADE MINI GAMES (SPOT + BUBBLE POP + MEMORY MATCH) -->
+    <section id="world-arcade" class="world-section hidden space-y-4">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-white/20 backdrop-blur-md text-cyan-300">
+            🎮 Kid Arcade
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Mini Games Challenge!</h2>
+          <p class="text-xs sm:text-sm text-blue-100 sinhala-text font-semibold mt-1">
+            විනෝදජනක ක්‍රීඩා කරමින් මතකය සහ ඉංග්‍රීසි දැනුම දියුණු කරගනිමු!
+          </p>
+        </div>
+        
+        <!-- Game Switcher Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="loadArcadeGame('memory')" id="arcadeModeBtn-memory" class="bubble-btn px-3 py-1.5 rounded-xl text-xs font-black bg-yellow-400 text-yellow-950">
+            🃏 Memory Match
+          </button>
+          <button onclick="loadArcadeGame('spot')" id="arcadeModeBtn-spot" class="bubble-btn px-3 py-1.5 rounded-xl text-xs font-black bg-white/20 hover:bg-white/30 text-white">
+            🔍 Spot Picture
+          </button>
+          <button onclick="loadArcadeGame('bubble')" id="arcadeModeBtn-bubble" class="bubble-btn px-3 py-1.5 rounded-xl text-xs font-black bg-white/20 hover:bg-white/30 text-white">
+            🫧 Word Bubble
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Game Arena -->
+      <div id="arcadeArenaBox" class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-yellow-300 min-h-[400px] flex flex-col items-center justify-center text-center"></div>
+    </section>
+
+    <!-- 14. PARENT & TEACHER HUB (NEW) -->
+    <section id="world-parents" class="world-section hidden space-y-6">
+      <div class="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-purple-800 via-indigo-900 to-slate-900 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-xl text-center md:text-left">
+          <span class="px-3 py-1 rounded-full text-xs font-black uppercase bg-purple-500/30 border border-purple-400/40 text-purple-200">
+            🛡️ Parent & Educator Corner
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight">Parent Guidance & Worksheets</h2>
+          <p class="text-xs sm:text-sm text-purple-200 sinhala-text font-semibold mt-1">
+            දරුවාගේ ඉගෙනුම් ප්‍රගතිය නිරීක්ෂණය කරන්න. නිවසේදී පුහුණු වීමට වැඩ පත්‍රිකා මුද්‍රණය (Print) කරගන්න!
+          </p>
+        </div>
+        <div class="text-5xl sm:text-6xl floating-toy">📊🖨️</div>
+      </div>
+
+      <!-- Progress Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-3xl border-4 border-yellow-200 shadow-md text-center">
+          <span class="text-3xl">⭐</span>
+          <h3 id="parentStarsTotal" class="text-3xl font-black text-amber-500 mt-1">12</h3>
+          <p class="text-xs font-black text-slate-500 uppercase mt-0.5">Total Stars Earned</p>
+        </div>
+        <div class="bg-white p-5 rounded-3xl border-4 border-emerald-200 shadow-md text-center">
+          <span class="text-3xl">🏆</span>
+          <h3 id="parentStickersUnlocked" class="text-3xl font-black text-emerald-600 mt-1">4 / 8</h3>
+          <p class="text-xs font-black text-slate-500 uppercase mt-0.5">Stickers Unlocked</p>
+        </div>
+        <div class="bg-white p-5 rounded-3xl border-4 border-pink-200 shadow-md text-center">
+          <span class="text-3xl">⏱️</span>
+          <h3 id="parentSessionTimer" class="text-3xl font-black text-pink-600 mt-1">05:20</h3>
+          <p class="text-xs font-black text-slate-500 uppercase mt-0.5">Today's Learning Time</p>
+        </div>
+      </div>
+
+      <!-- Printable Worksheet Preview -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border-4 border-purple-200 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pb-3 border-b-2 border-slate-100">
+          <div>
+            <h3 class="text-xl font-black text-slate-800">Printable A4 Tracing Worksheet</h3>
+            <p class="text-xs text-slate-500 sinhala-text font-bold">A4 කොළයකට Print කර දරුවාට අකුරු ලිවීමට හා පාට කිරීමට ලබාදෙන්න!</p>
+          </div>
+          <button onclick="window.print()" class="bubble-btn px-5 py-2.5 rounded-2xl bg-indigo-600 text-white font-black text-sm flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-print"></i> Print Worksheet (A4)
+          </button>
+        </div>
+
+        <div id="printableWorksheetArea" class="p-6 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 text-slate-800 space-y-5">
+          <div class="text-center border-b pb-3">
+            <h2 class="text-2xl font-black text-purple-700">D'KANS Kids English Club • Activity Sheet</h2>
+            <p class="text-xs text-slate-500 font-bold">Name: ______________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: ______________________</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <span class="text-4xl">🍎</span>
+              <p class="text-2xl font-black tracking-widest text-slate-400 mt-1 font-mono">A - P - P - L - E</p>
+              <p class="text-xs text-slate-500 font-bold sinhala-text mt-1">ඇපල් (Color & Trace)</p>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <span class="text-4xl">🐶</span>
+              <p class="text-2xl font-black tracking-widest text-slate-400 mt-1 font-mono">D - O - G</p>
+              <p class="text-xs text-slate-500 font-bold sinhala-text mt-1">බල්ලා (Color & Trace)</p>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <span class="text-4xl">🐱</span>
+              <p class="text-2xl font-black tracking-widest text-slate-400 mt-1 font-mono">C - A - T</p>
+              <p class="text-xs text-slate-500 font-bold sinhala-text mt-1">පූසා (Color & Trace)</p>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <span class="text-4xl">☀️</span>
+              <p class="text-2xl font-black tracking-widest text-slate-400 mt-1 font-mono">S - U - N</p>
+              <p class="text-xs text-slate-500 font-bold sinhala-text mt-1">හිරු (Color & Trace)</p>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white rounded-xl border border-slate-200">
+            <h4 class="font-black text-sm text-slate-700 mb-2">Practice Sentence Tracing:</h4>
+            <p class="text-xl text-slate-400 font-mono tracking-wide leading-relaxed border-b pb-2">
+              "Good morning Teacher! I love my school."
+            </p>
+            <p class="text-xl text-slate-400 font-mono tracking-wide leading-relaxed border-b pb-2 pt-2">
+              "Thank you very much. May I drink water please?"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= STICKER ALBUM MODAL ================= -->
+  <div id="stickerAlbumModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl border-4 border-yellow-400 shadow-2xl p-5 sm:p-7 max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b-2 border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="text-3xl">🏆</span>
+          <div>
+            <h3 class="text-lg font-black text-slate-800">Kid's Sticker Album</h3>
+            <p class="text-xs text-slate-500 sinhala-text font-bold">තරු එකතු කර ලස්සන ස්ටිකර් අගුළු අරින්න!</p>
+          </div>
+        </div>
+        <button onclick="closeStickerAlbumModal()" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center text-lg font-bold">
+          ✕
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-r from-amber-100 to-yellow-100 p-4 rounded-2xl flex items-center justify-between border-2 border-amber-300">
+        <div>
+          <span class="text-xs font-black text-amber-900 uppercase">Current Stars:</span>
+          <h4 id="albumStarsCount" class="text-2xl font-black text-amber-950">12 ⭐</h4>
+        </div>
+        <p class="text-xs text-amber-800 sinhala-text font-bold text-right">
+          ක්‍රීඩා කර වාක්‍ය පවසමින්<br>තවත් තරු දිනාගන්න!
+        </p>
+      </div>
+
+      <div id="stickerGridContainer" class="grid grid-cols-3 sm:grid-cols-4 gap-3 pt-2"></div>
+    </div>
+  </div>
+
+  <!-- ================= MOBILE STICKY BOTTOM NAVIGATION BAR ================= -->
+  <nav class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-xl border-t-4 border-yellow-300 px-2 py-1.5 flex items-center justify-around shadow-2xl" style="padding-bottom: calc(0.35rem + var(--sab));">
+    <button onclick="switchCategory('alphabet')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-pink-600 font-black" id="mobNav-alphabet">
+      <span class="text-xl">🔤</span><span class="text-[10px] mt-0.5">ABC</span>
+    </button>
+    <button onclick="switchCategory('body')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold" id="mobNav-body">
+      <span class="text-xl">👀</span><span class="text-[10px] mt-0.5">Body</span>
+    </button>
+    <button onclick="switchCategory('rhymes')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold" id="mobNav-rhymes">
+      <span class="text-xl">🎶</span><span class="text-[10px] mt-0.5">Rhymes</span>
+    </button>
+    <button onclick="switchCategory('stories')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold" id="mobNav-stories">
+      <span class="text-xl">📖</span><span class="text-[10px] mt-0.5">Stories</span>
+    </button>
+    <button onclick="switchCategory('arcade')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold" id="mobNav-arcade">
+      <span class="text-xl">🎮</span><span class="text-[10px] mt-0.5">Games</span>
+    </button>
+    <button onclick="switchCategory('parents')" class="mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold" id="mobNav-parents">
+      <span class="text-xl">🛡️</span><span class="text-[10px] mt-0.5">Parents</span>
+    </button>
+  </nav>
+
+  <!-- ================= POPUP TOAST ALERT ================= -->
+  <div id="kidToast" class="fixed top-20 right-4 z-50 transform -translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-white border-4 border-yellow-400 text-slate-900 px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 font-black text-sm">
+    <span id="kidToastIcon" class="text-xl">🌟</span>
+    <span id="kidToastMsg">Awesome job!</span>
+  </div>
+
+  <!-- ================= SOUNDS & APPLICATION LOGIC ================= -->
+  <script>
+    /* ================= Web Audio API Synthesizer ================= */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playTone(freq, duration = 0.18, type = 'sine') {
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playCheerJingle() {
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((freq, idx) => {
+        setTimeout(() => playTone(freq, 0.22, 'triangle'), idx * 80);
+      });
+    }
+
+    function playPopSound() {
+      playTone(580, 0.08, 'sine');
+    }
+
+    function playOopsBoop() {
+      playTone(220, 0.25, 'sawtooth');
+    }
+
+    /* ================= Character Voice Engine ================= */
+    let activeTeacherGender = localStorage.getItem('dkans_kid_gender') || 'female';
+
+    function setKidsTeacherVoice(gender) {
+      activeTeacherGender = gender;
+      localStorage.setItem('dkans_kid_gender', gender);
+
+      const btnSarah = document.getElementById('btnTeacherSarah');
+      const btnDan = document.getElementById('btnTeacherDan');
+
+      if (gender === 'female') {
+        btnSarah.className = "bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 bg-pink-500 text-white shadow-sm";
+        btnDan.className = "bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-700 hover:text-blue-600";
+        speakKidText("Hello sunshine! I am Teacher Sarah. Let's learn English together!");
+      } else {
+        btnDan.className = "bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 bg-blue-600 text-white shadow-sm";
+        btnSarah.className = "bubble-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 text-slate-700 hover:text-pink-600";
+        speakKidText("Hey buddy! I am Teacher Dan. Ready for fun learning?");
+      }
+    }
+
+    function speakKidText(text, callback = null) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.88; // Gentle clear tempo for kids
+      utter.pitch = activeTeacherGender === 'female' ? 1.35 : 0.95;
+      utter.lang = 'en-US';
+
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        const eng = voices.filter(v => v.lang.startsWith('en'));
+        if (activeTeacherGender === 'female') {
+          const match = eng.find(v => /female|samantha|zira|karen|victoria|jenny/i.test(v.name));
+          if (match) utter.voice = match;
+          else if (eng.length > 0) utter.voice = eng[0];
+        } else {
+          const match = eng.find(v => /male|david|george|mark|alex/i.test(v.name));
+          if (match) utter.voice = match;
+          else if (eng.length > 1) utter.voice = eng[1];
+        }
+      }
+
+      if (callback) {
+        utter.onend = callback;
+      }
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    /* ================= CURRICULA DATASETS ================= */
+
+    // 1. Phonics & ABC
+    const ALPHABET_DATA = [
+      { l: "A", word: "Apple", emoji: "🍎", phonics: "æ", si: "ඇපල් ගෙඩිය" },
+      { l: "B", word: "Ball", emoji: "⚽", phonics: "b", si: "බෝලය" },
+      { l: "C", word: "Cat", emoji: "🐱", phonics: "k", si: "පූස් පැටියා" },
+      { l: "D", word: "Dog", emoji: "🐶", phonics: "d", si: "බලු පැටියා" },
+      { l: "E", word: "Elephant", emoji: "🐘", phonics: "e", si: "අලියා" },
+      { l: "F", word: "Fish", emoji: "🐟", phonics: "f", si: "මාළුවා" },
+      { l: "G", word: "Grapes", emoji: "🍇", phonics: "g", si: "මිදි පොකුර" },
+      { l: "H", word: "Hat", emoji: "👒", phonics: "h", si: "තොප්පිය" },
+      { l: "I", word: "Ice cream", emoji: "🍦", phonics: "aɪ", si: "අයිස්ක්‍රීම්" },
+      { l: "J", word: "Juice", emoji: "🧃", phonics: "dʒ", si: "පළතුරු යුෂ" },
+      { l: "K", word: "Kite", emoji: "🪁", phonics: "k", si: "සරුංගලය" },
+      { l: "L", word: "Lion", emoji: "🦁", phonics: "l", si: "සිංහ රාජයා" },
+      { l: "M", word: "Monkey", emoji: "🐵", phonics: "m", si: "වඳුරා" },
+      { l: "N", word: "Nest", emoji: "🪺", phonics: "n", si: "කුරුළු කූඩුව" },
+      { l: "O", word: "Orange", emoji: "🍊", phonics: "ɒ", si: "දොඩම්" },
+      { l: "P", word: "Penguin", emoji: "🐧", phonics: "p", si: "පෙන්ගුයින්" },
+      { l: "Q", word: "Queen", emoji: "👑", phonics: "kw", si: "රැජින" },
+      { l: "R", word: "Rainbow", emoji: "🌈", phonics: "r", si: "දේදුන්න" },
+      { l: "S", word: "Sun", emoji: "☀️", phonics: "s", si: "හිරු දෙවියෝ" },
+      { l: "T", word: "Tiger", emoji: "🐯", phonics: "t", si: "කොටියා" },
+      { l: "U", word: "Umbrella", emoji: "☂️", phonics: "ʌ", si: "කුඩය" },
+      { l: "V", word: "Van", emoji: "🚐", phonics: "v", si: "වෑන් රථය" },
+      { l: "W", word: "Watch", emoji: "⌚", phonics: "w", si: "අත් ඔරලෝසුව" },
+      { l: "X", word: "Xylophone", emoji: "🎵", phonics: "z", si: "සයිලෆෝනය" },
+      { l: "Y", word: "Yacht", emoji: "⛵", phonics: "j", si: "යාත්‍රාව" },
+      { l: "Z", word: "Zebra", emoji: "🦓", phonics: "z", si: "සීබ්‍රා" }
+    ];
+
+    // 2. My Body
+    const BODY_DATA = [
+      { part: "Head", emoji: "🧑", si: "හිස", action: "I nod my head! (හිස සලන්නෙමි)" },
+      { part: "Eyes", emoji: "👀", si: "ඇස්", action: "I see beautiful colors! (ලස්සන පාටවල් දකිමි)" },
+      { part: "Ears", emoji: "👂", si: "කන්", action: "I hear lovely songs! (මිහිරි ගීත අසමි)" },
+      { part: "Nose", emoji: "👃", si: "නාසය", action: "I smell sweet flowers! (මල් සුවඳ ආඝ්‍රහණය කරමි)" },
+      { part: "Mouth", emoji: "👄", si: "කට", action: "I smile and speak kindly! (සිනහ වී කරුණාවෙන් කතා කරමි)" },
+      { part: "Teeth", emoji: "🦷", si: "දත්", action: "I brush my teeth twice a day! (දිනකට දෙවරක් දත් මදිමි)" },
+      { part: "Hands", emoji: "🖐️", si: "අත්", action: "I clap and write neatly! (අත්පුඩි ගසමි, ලස්සනට ලියමි)" },
+      { part: "Legs", emoji: "🦵", si: "පාද", action: "I run, jump and dance! (දුවන්නෙමි, පනින්නෙමි)" }
+    ];
+
+    // 3. Family
+    const FAMILY_DATA = [
+      { role: "Father (Daddy)", emoji: "👨", si: "තාත්තා", quote: "My father is caring and strong! (මගේ තාත්තා ශක්තිමත්ය)" },
+      { role: "Mother (Mommy)", emoji: "👩", si: "අම්මා", quote: "My mother gives the sweetest hugs! (මගේ අම්මා මට ඉතා ආදරෙයි)" },
+      { role: "Brother", emoji: "👦", si: "සහෝදරයා", quote: "My brother plays ball with me! (මගේ සහෝදරයා මා සමඟ සෙල්ලම් කරයි)" },
+      { role: "Sister", emoji: "👧", si: "සහෝදරිය", quote: "My sister shares her cute toys! (මගේ සහෝදරිය සෙල්ලම් බඩු බෙදාගනියි)" },
+      { role: "Baby", emoji: "👶", si: "පුංචි බබා", quote: "The cute baby laughs and babbles! (පුංචි බබා හුරතලයට සිනහවෙයි)" },
+      { role: "Grandfather", emoji: "👴", si: "සීයා", quote: "Grandpa tells wonderful stories! (සීයා අපූරු කතන්දර කියයි)" },
+      { role: "Grandmother", emoji: "👵", si: "ආච්චි", quote: "Grandma bakes yummy treats! (ආච්චි රසවත් කෑම හදයි)" },
+      { role: "Happy Home", emoji: "🏡", si: "සතුටු නිවස", quote: "I love my happy family! (මම මගේ පවුලට ආදරෙයි!)" }
+    ];
+
+    // 4. School & Classroom
+    const SCHOOL_DATA = [
+      { item: "School Bag", emoji: "🎒", si: "පාසල් බෑගය", tip: "Carries all my books! (මගේ පොත් රැගෙන යයි)" },
+      { item: "Pencil", emoji: "✏️", si: "පැන්සල", tip: "Writes wonderful letters! (ලස්සන අකුරු ලියයි)" },
+      { item: "Book", emoji: "📖", si: "පොත", tip: "Full of magic stories! (මැජික් කතාන්දර වලින් පිරී ඇත)" },
+      { item: "Eraser", emoji: "🧼", si: "මකනය", tip: "Erases small mistakes! (වැරදි මකා දමයි)" },
+      { item: "Ruler", emoji: "📏", si: "කෝදුව", tip: "Draws neat straight lines! (කෙළින් රේඛා අඳියි)" },
+      { item: "Water Bottle", emoji: "🍶", si: "වතුර බෝතලය", tip: "Keeps me fresh and healthy! (නිරෝගීව තබයි)" },
+      { item: "Lunchbox", emoji: "🍱", si: "කෑම පෙට්ටිය", tip: "Yummy healthy food from mommy! (අම්මා හදපු රසවත් කෑම)" },
+      { item: "Teacher", emoji: "👩‍🏫", si: "ගුරුතුමිය", tip: "Teaches us with love and kindness! (කරුණාවෙන් උගන්වයි)" }
+    ];
+
+    // 5. Days & Weather
+    const DAYS_DATA = [
+      { en: "Monday", si: "සඳුදා", icon: "🚀", tip: "Fresh start of the week!" },
+      { en: "Tuesday", si: "අඟහරුවාදා", icon: "⭐", tip: "Reading and drawing day!" },
+      { en: "Wednesday", si: "බදාදා", icon: "🎨", tip: "Mid-week arts and games!" },
+      { en: "Thursday", si: "බ්‍රහස්පතින්දා", icon: "📚", tip: "Science and stories day!" },
+      { en: "Friday", si: "සිකුරාදා", icon: "🎉", tip: "School fun day!" },
+      { en: "Saturday", si: "සෙනසුරාදා", icon: "⚽", tip: "Play park weekend!" },
+      { en: "Sunday", si: "ඉරිදා", icon: "🏖️", tip: "Family relaxation day!" }
+    ];
+
+    const WEATHER_DATA = [
+      { name: "Sunny Day", emoji: "☀️", si: "හිරු පායන දවස", phrase: "Today is bright and sunny!" },
+      { name: "Rainy Day", emoji: "🌧️", si: "වැසි සහිත දවස", phrase: "It is raining! Take an umbrella." },
+      { name: "Windy Day", emoji: "💨", si: "සුළං සහිත දවස", phrase: "The cool wind is blowing!" },
+      { name: "Cloudy Day", emoji: "⛅", si: "වළාකුළු සහිත දවස", phrase: "Look at the fluffy white clouds!" },
+      { name: "Rainbow", emoji: "🌈", si: "දේදුන්නක් පායා ඇත", phrase: "I see seven gorgeous colors in the sky!" }
+    ];
+
+    // 6. Nursery Rhymes
+    const RHYMES_DATA = [
+      {
+        id: "twinkle",
+        title: "Twinkle Twinkle Little Star",
+        emoji: "⭐",
+        siNote: "රාත්‍රී අහසේ දියමන්ති සේ බබළන පුංචි තාරකාව ගැන සුප්‍රසිද්ධ ළමා ගීතය.",
+        lines: [
+          "Twinkle, twinkle, little star,",
+          "How I wonder what you are!",
+          "Up above the world so high,",
+          "Like a diamond in the sky.",
+          "Twinkle, twinkle, little star,",
+          "How I wonder what you are!"
+        ]
+      },
+      {
+        id: "oldmac",
+        title: "Old MacDonald Had a Farm",
+        emoji: "🚜",
+        siNote: "මැක්ඩොනල්ඩ් ගොවි මහතාගේ සත්ව ගොවිපළ සහ සතුන්ගේ හඬවල් ගැන විනෝද ගීතය.",
+        lines: [
+          "Old MacDonald had a farm, E-I-E-I-O!",
+          "And on that farm he had a cow, E-I-E-I-O!",
+          "With a moo-moo here and a moo-moo there,",
+          "Here a moo, there a moo, everywhere a moo-moo!",
+          "Old MacDonald had a farm, E-I-E-I-O!"
+        ]
+      },
+      {
+        id: "bus",
+        title: "The Wheels on the Bus",
+        emoji: "🚌",
+        siNote: "නගරය වටා යන බස් රථයේ රෝද, හෝන් සහ ළමුන්ගේ සතුටු ගමන.",
+        lines: [
+          "The wheels on the bus go round and round,",
+          "Round and round, round and round.",
+          "The wheels on the bus go round and round,",
+          "All through the town!",
+          "The horn on the bus goes beep, beep, beep,",
+          "All through the town!"
+        ]
+      },
+      {
+        id: "sheep",
+        title: "Baa Baa Black Sheep",
+        emoji: "🐑",
+        siNote: "ලොම් මලු තුනක් ඇති කාරුණික කළු බැටළුවාගේ සුන්දර ගීතය.",
+        lines: [
+          "Baa, baa, black sheep, have you any wool?",
+          "Yes, sir, yes, sir, three bags full.",
+          "One for the master, and one for the dame,",
+          "And one for the little boy who lives down the lane.",
+          "Baa, baa, black sheep, have you any wool?",
+          "Yes, sir, yes, sir, three bags full!"
+        ]
+      }
+    ];
+
+    // 7. Illustrated Picture Stories
+    const STORIES_DATA = [
+      {
+        id: "crow",
+        title: "The Thirsty Crow",
+        siTitle: "පිපාසිත කපුටා",
+        emoji: "🦅",
+        moral: "Where there is a will, there is a way! (උත්සාහය ජයග්‍රහණයේ මගයි)",
+        scenes: [
+          { pic: "🦅☀️", text: "Once upon a time, a clever crow was very thirsty on a hot sunny day.", si: "දිනක් උණුසුම් දිනක පිපාසිත වූ කපුටෙක් ජලය සොයමින් පියාසර කළේය." },
+          { pic: "🏺💧", text: "He found a tall pitcher with a little water at the bottom, but his beak could not reach it.", si: "කපුටාට බඳුනක් හමුවූ නමුත් එහි අඩියේ තිබූ වතුරට ඔහුගේ හොට ලඟා විය නොහැකි විය." },
+          { pic: "🪨🦅", text: "The clever crow picked up small pebbles one by one and dropped them into the pitcher.", si: "බුද්ධිමත් කපුටා කුඩා ගල් කැට එකින් එක හොටින් ගෙන බඳුනට දැමුවේය." },
+          { pic: "🌊🎉", text: "The water rose to the top! The happy crow drank the sweet water and flew away joyfully.", si: "ජල මට්ටම ඉහළට පැමිණියේය! කපුටා වතුර බී සතුටින් පියාසර කළේය." }
+        ],
+        quiz: { q: "How did the crow raise the water?", opts: ["With pebbles", "With a spoon", "He waited for rain"], ans: "With pebbles" }
+      },
+      {
+        id: "lionmouse",
+        title: "The Lion and the Mouse",
+        siTitle: "සිංහයා සහ පුංචි මීයා",
+        emoji: "🦁",
+        moral: "Even the smallest friend can be of great help! (පුංචි මිතුරෙකුටත් විශාල උදව්වක් කළ හැකිය)",
+        scenes: [
+          { pic: "🦁😴", text: "A mighty lion was sleeping when a tiny little mouse accidentally ran over his paws.", si: "මහා සිංහයා නිදා සිටියදී පුංචි මීයෙකු ඔහුගේ දෙපා මතින් දිව ගියේය." },
+          { pic: "🐭🙏", text: "The lion woke up angrily, but the mouse pleaded: 'Please spare me, I might help you one day!'", si: "සිංහයා කෝප විය. නමුත් මීයා 'කරුණාකර මට සමාව දෙන්න, යම් දිනක මමත් උදව් කරන්නම්' යැයි අයැද සිටියේය." },
+          { pic: "🕸️🦁", text: "Days later, the lion got caught in a hunter's strong rope net and roared loudly!", si: "දින කිහිපයකට පසු සිංහයා දඩයක්කරුවෙකුගේ දැලකට හසුවී මොරගැසුවේය!" },
+          { pic: "🐭✂️", text: "The brave little mouse heard him, quickly gnawed the ropes with sharp teeth, and freed the lion!", si: "පුංචි මීයා දිවවිත් තම තියුණු දත් වලින් දැල කපා සිංහයාව බේරාගත්තේය!" }
+        ],
+        quiz: { q: "Who saved the mighty lion?", opts: ["The tiny mouse", "The elephant", "The bird"], ans: "The tiny mouse" }
+      },
+      {
+        id: "tortoise",
+        title: "The Tortoise and the Hare",
+        siTitle: "ඉබ්බා සහ හාවා",
+        emoji: "🐢",
+        moral: "Slow and steady wins the race! (නොනවත්නා කැපවීමෙන් ජය ලැබේ)",
+        scenes: [
+          { pic: "🐰🐢", text: "A boastful hare laughed at a slow-moving tortoise and challenged him to a race.", si: "වේගයෙන් දුවන හාවා සෙමෙන් ඇවිදින ඉබ්බාට සමච්චල් කර ධාවන තරඟයකට අභියෝග කළේය." },
+          { pic: "💨🐰", text: "The hare dashed ahead fast, saw the tortoise far behind, and decided to take a nap under a shady tree.", si: "හාවා වේගයෙන් ඉදිරියට දිවගොස්, ඉබ්බා පසුපසින් සිටිනු දැක ගසක් යට නින්දට වැටුණි." },
+          { pic: "🐢🚶", text: "The patient tortoise never stopped walking. Step by step, he quietly passed the sleeping hare.", si: "ඉවසිලිවන්ත ඉබ්බා කිසිවිටෙක නොනැවතී, පියවරෙන් පියවර නිදා සිටින හාවා පසුකර ගියේය." },
+          { pic: "🏆🏁", text: "The tortoise crossed the finish line first! All the forest animals cheered loudly!", si: "ඉබ්බා ප්‍රථමයෙන්ම ජයග්‍රාහී සීමාව පසු කළේය! සියලු සතුන් ඔහුට ඔල්වරසන් දුන්හ!" }
+        ],
+        quiz: { q: "Why did the tortoise win?", opts: ["He never stopped trying", "He ran faster than the hare", "He flew"], ans: "He never stopped trying" }
+      }
+    ];
+
+    // 8. Animals Dataset
+    const ANIMALS_DATA = [
+      { name: "Dog", sound: "Woof Woof!", emoji: "🐶", si: "බල්ලා", funFact: "Dogs are very loyal best friends!" },
+      { name: "Cat", sound: "Meow Meow!", emoji: "🐱", si: "පූසා", funFact: "Cats love playing with balls of wool!" },
+      { name: "Lion", sound: "Roar! Roar!", emoji: "🦁", si: "සිංහයා", funFact: "King of the jungle!" },
+      { name: "Cow", sound: "Moo Moo!", emoji: "🐮", si: "එළදෙන", funFact: "Gives us healthy fresh milk!" },
+      { name: "Duck", sound: "Quack Quack!", emoji: "🦆", si: "තාරාවා", funFact: "Ducks swim gracefully in ponds!" },
+      { name: "Rooster", sound: "Cock-a-doodle-doo!", emoji: "🐓", si: "කුකුළා", funFact: "Wakes us up early every morning!" },
+      { name: "Elephant", sound: "Pawoo! Trumpet!", emoji: "🐘", si: "අලියා", funFact: "Has a long trunk to drink and wash!" },
+      { name: "Frog", sound: "Ribbit! Croak!", emoji: "🐸", si: "ගෙම්බා", funFact: "Can leap super high over water lilies!" }
+    ];
+
+    // 9. Numbers Dataset
+    const NUMBERS_DATA = [
+      { num: 1, word: "One", emoji: "⭐", si: "එක" },
+      { num: 2, word: "Two", emoji: "⭐⭐", si: "දෙක" },
+      { num: 3, word: "Three", emoji: "⭐⭐⭐", si: "තුන" },
+      { num: 4, word: "Four", emoji: "🧸🧸🧸🧸", si: "හතර" },
+      { num: 5, word: "Five", emoji: "🎈🎈🎈🎈🎈", si: "පහ" },
+      { num: 6, word: "Six", emoji: "🚗🚗🚗🚗🚗🚗", si: "හය" },
+      { num: 7, word: "Seven", emoji: "🍎🍎🍎🍎🍎🍎🍎", si: "හත" },
+      { num: 8, word: "Eight", emoji: "🌸🌸🌸🌸🌸🌸🌸🌸", si: "අට" },
+      { num: 9, word: "Nine", emoji: "🍭🍭🍭🍭🍭🍭🍭🍭🍭", si: "නවය" },
+      { num: 10, word: "Ten", emoji: "🔟🔟🔟🔟🔟🔟🔟🔟🔟🔟", si: "දහය" }
+    ];
+
+    // 10. Colors Dataset
+    const COLORS_DATA = [
+      { name: "Red", emoji: "🔴", si: "රතු පාට", example: "Red Apple (රතු ඇපල්)" },
+      { name: "Blue", emoji: "🔵", si: "නිල් පාට", example: "Blue Sky (නිල් අහස)" },
+      { name: "Yellow", emoji: "🟡", si: "කහ පාට", example: "Yellow Banana (කහ කෙසෙල්)" },
+      { name: "Green", emoji: "🟢", si: "කොළ පාට", example: "Green Leaf (කොළ කොළය)" },
+      { name: "Purple", emoji: "🟣", si: "දම් පාට", example: "Purple Grapes (දම් මිදි)" },
+      { name: "Orange", emoji: "🟠", si: "තැඹිලි පාට", example: "Sweet Orange (පැණි දොඩම්)" },
+      { name: "Pink", emoji: "🌸", si: "රෝස පාට", example: "Pink Flower (රෝස මල)" },
+      { name: "Star", emoji: "⭐", si: "තරුව හැඩය", example: "Golden Star (රන් තරුව)" },
+      { name: "Circle", emoji: "⭕", si: "වෘත්තය", example: "Round Ball (වටකුරු බෝලය)" },
+      { name: "Heart", emoji: "❤️", si: "හෘද හැඩය", example: "Kind Heart (ආදරණීය හදවත)" }
+    ];
+
+    // 11. Fruits Dataset
+    const FRUITS_DATA = [
+      { name: "Mango", emoji: "🥭", si: "අඹ", tip: "Super sweet tropical fruit!" },
+      { name: "Apple", emoji: "🍎", si: "ඇපල්", tip: "An apple a day keeps the doctor away!" },
+      { name: "Banana", emoji: "🍌", si: "කෙසෙල්", tip: "Full of healthy vitamins and energy!" },
+      { name: "Watermelon", emoji: "🍉", si: "පැණි කොමඩු", tip: "Juicy and cooling in hot weather!" },
+      { name: "Strawberry", emoji: "🍓", si: "ස්ට්‍රෝබෙරි", tip: "Bright red and rich in vitamin C!" },
+      { name: "Pineapple", emoji: "🍍", si: "අන්නාසි", tip: "Has a lovely golden crown on top!" },
+      { name: "Carrot", emoji: "🥕", si: "කැරට්", tip: "Great for bright healthy vision!" },
+      { name: "Corn", emoji: "🌽", si: "ඉරිඟු", tip: "Crispy sweet yellow golden kernels!" }
+    ];
+
+    // 12. Spoken Magic Phrases
+    const SPEECH_MAGIC_DATA = [
+      { id: "sm-1", phrase: "Good morning Teacher!", si: "සුබ උදෑසනක් ටීචර්!", icon: "☀️" },
+      { id: "sm-2", phrase: "Thank you very much!", si: "ඔබට බොහොම ස්තූතියි!", icon: "🙏" },
+      { id: "sm-3", phrase: "May I drink water please?", si: "කරුණාකර මට වතුර බොන්න පුළුවන්ද?", icon: "💧" },
+      { id: "sm-4", phrase: "I love my mommy and daddy!", si: "මම මගේ අම්මාට සහ තාත්තාට ආදරෙයි!", icon: "❤️" },
+      { id: "sm-5", phrase: "Can I play with you?", si: "මට ඔබ සමඟ සෙල්ලම් කළ හැකිද?", icon: "🎈" },
+      { id: "sm-6", phrase: "Good night sweet dreams!", si: "සුබ රාත්‍රියක්, සුව නින්දක්!", icon: "🌙" }
+    ];
+
+    // Stickers Vault
+    const STICKERS_VAULT = [
+      { id: "st-1", name: "Baby Lion", emoji: "🦁", starsRequired: 2 },
+      { id: "st-2", name: "Magic Wand", emoji: "🪄", starsRequired: 5 },
+      { id: "st-3", name: "Space Rocket", emoji: "🚀", starsRequired: 8 },
+      { id: "st-4", name: "Teddy Bear", emoji: "🧸", starsRequired: 12 },
+      { id: "st-5", name: "Friendly Dino", emoji: "🦕", starsRequired: 16 },
+      { id: "st-6", name: "Rainbow", emoji: "🌈", starsRequired: 20 },
+      { id: "st-7", name: "Gold Crown", emoji: "👑", starsRequired: 25 },
+      { id: "st-8", name: "Super Unicorn", emoji: "🦄", starsRequired: 30 }
+    ];
+
+    /* ================= Stars & Gamification State ================= */
+    let kidStars = parseInt(localStorage.getItem('dkans_kid_stars') || '12', 10);
+    let sessionSeconds = 0;
+
+    setInterval(() => {
+      sessionSeconds++;
+      const mins = String(Math.floor(sessionSeconds / 60)).padStart(2, '0');
+      const secs = String(sessionSeconds % 60).padStart(2, '0');
+      const timerEl = document.getElementById('parentSessionTimer');
+      if (timerEl) timerEl.textContent = `${mins}:${secs}`;
+    }, 1000);
+
+    function addKidStars(amount = 1) {
+      kidStars += amount;
+      localStorage.setItem('dkans_kid_stars', kidStars.toString());
+      document.getElementById('kidTotalStarsBadge').textContent = kidStars;
+      document.getElementById('albumStarsCount').textContent = `${kidStars} ⭐`;
+      
+      const pTotal = document.getElementById('parentStarsTotal');
+      if (pTotal) pTotal.textContent = kidStars;
+
+      confetti({
+        particleCount: 35,
+        spread: 70,
+        origin: { y: 0.75 }
+      });
+      playCheerJingle();
+      showKidToast(`+${amount} Star! Super Job! ⭐`, "🎉");
+    }
+
+    function showKidToast(msg, icon = "🌟") {
+      const toast = document.getElementById('kidToast');
+      document.getElementById('kidToastMsg').textContent = msg;
+      document.getElementById('kidToastIcon').textContent = icon;
+      toast.classList.remove('-translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('-translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    /* ================= RENDER FUNCTIONS ================= */
+
+    // Alphabet
+    function renderAlphabetWorld() {
+      const container = document.getElementById('alphabetCardsGrid');
+      container.innerHTML = '';
+      ALPHABET_DATA.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-3 sm:p-4 border-4 border-pink-200 hover:border-pink-400 flex flex-col items-center text-center shadow-md relative";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${item.l}. ${item.l} is for ${item.word}. ${item.word}!`);
+        };
+        card.innerHTML = `
+          <div class="w-full flex items-center justify-between">
+            <span class="text-2xl sm:text-3xl font-black text-pink-600">${item.l}</span>
+            <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-lg">/${item.phonics}/</span>
+          </div>
+          <div class="text-4xl sm:text-5xl my-2 wiggle-on-hover">${item.emoji}</div>
+          <h4 class="text-sm sm:text-base font-black text-slate-800">${item.word}</h4>
+          <p class="text-[11px] font-bold text-slate-500 sinhala-text mt-0.5">${item.si}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Body
+    function renderBodyWorld() {
+      const container = document.getElementById('bodyCardsGrid');
+      container.innerHTML = '';
+      BODY_DATA.forEach(b => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 sm:p-5 border-4 border-teal-200 hover:border-teal-400 shadow-md flex flex-col items-center text-center justify-between";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${b.part}! ${b.action}`);
+        };
+        card.innerHTML = `
+          <div>
+            <div class="text-5xl mb-2 wiggle-on-hover">${b.emoji}</div>
+            <h3 class="text-lg font-black text-slate-800">${b.part}</h3>
+            <span class="text-xs font-bold text-teal-700 sinhala-text">${b.si}</span>
+          </div>
+          <div class="mt-3 p-2 bg-teal-50 rounded-2xl text-[11px] text-teal-900 font-bold sinhala-text border border-teal-200">
+            💡 ${b.action}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Family
+    function renderFamilyWorld() {
+      const container = document.getElementById('familyCardsGrid');
+      container.innerHTML = '';
+      FAMILY_DATA.forEach(f => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 sm:p-5 border-4 border-pink-200 hover:border-pink-400 shadow-md flex flex-col items-center text-center justify-between";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${f.role}. ${f.quote}`);
+        };
+        card.innerHTML = `
+          <div>
+            <div class="text-5xl mb-1 floating-toy">${f.emoji}</div>
+            <h3 class="text-base sm:text-lg font-black text-slate-800 mt-1">${f.role}</h3>
+            <span class="text-xs font-bold text-pink-600 sinhala-text">${f.si}</span>
+          </div>
+          <p class="mt-3 p-2 bg-pink-50 rounded-2xl text-[11px] text-pink-900 font-bold sinhala-text border border-pink-100">
+            "${f.quote}"
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // School
+    function renderSchoolWorld() {
+      const container = document.getElementById('schoolCardsGrid');
+      container.innerHTML = '';
+      SCHOOL_DATA.forEach(s => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 border-4 border-blue-200 hover:border-blue-400 shadow-md flex flex-col items-center text-center justify-between";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${s.item}! ${s.tip}`);
+        };
+        card.innerHTML = `
+          <div>
+            <div class="text-5xl mb-1 wiggle-on-hover">${s.emoji}</div>
+            <h3 class="text-base font-black text-slate-800">${s.item}</h3>
+            <span class="text-xs font-bold text-blue-700 sinhala-text">${s.si}</span>
+          </div>
+          <p class="mt-2 text-[11px] text-slate-600 font-semibold bg-blue-50 p-2 rounded-xl border border-blue-100">
+            ${s.tip}
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Days & Weather
+    function renderDaysAndWeatherWorld() {
+      const daysContainer = document.getElementById('daysOfWeekGrid');
+      daysContainer.innerHTML = '';
+      DAYS_DATA.forEach((d, i) => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-2xl p-3 border-3 border-indigo-200 hover:border-indigo-400 shadow-sm text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`Day ${i + 1}: ${d.en}. ${d.tip}`);
+        };
+        card.innerHTML = `
+          <span class="text-2xl">${d.icon}</span>
+          <h4 class="text-sm font-black text-indigo-900 mt-1">${d.en}</h4>
+          <span class="text-[11px] font-bold text-slate-500 sinhala-text">${d.si}</span>
+        `;
+        daysContainer.appendChild(card);
+      });
+
+      const weatherContainer = document.getElementById('weatherCardsGrid');
+      weatherContainer.innerHTML = '';
+      WEATHER_DATA.forEach(w => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 border-4 border-cyan-200 hover:border-cyan-400 shadow-md text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${w.name}! ${w.phrase}`);
+        };
+        card.innerHTML = `
+          <div class="text-5xl mb-1 floating-toy">${w.emoji}</div>
+          <h4 class="text-base font-black text-slate-800">${w.name}</h4>
+          <span class="text-xs font-bold text-cyan-700 sinhala-text">${w.si}</span>
+          <p class="mt-2 text-[11px] text-slate-600 font-semibold bg-cyan-50 p-1.5 rounded-xl border border-cyan-100">
+            "${w.phrase}"
+          </p>
+        `;
+        weatherContainer.appendChild(card);
+      });
+    }
+
+    // 6. Nursery Rhymes
+    let activeRhymeIdx = 0;
+
+    function renderRhymesWorld() {
+      const listContainer = document.getElementById('rhymesListContainer');
+      listContainer.innerHTML = '';
+
+      RHYMES_DATA.forEach((r, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `w-full bubble-btn p-3.5 rounded-2xl flex items-center gap-3 text-left border-3 transition-all ${
+          idx === activeRhymeIdx 
+            ? 'bg-yellow-300 border-yellow-500 text-yellow-950 font-black shadow-md' 
+            : 'bg-white border-slate-200 text-slate-700 hover:bg-yellow-50'
+        }`;
+        btn.onclick = () => {
+          activeRhymeIdx = idx;
+          renderRhymesWorld();
+        };
+        btn.innerHTML = `
+          <span class="text-3xl">${r.emoji}</span>
+          <div class="flex-1">
+            <h4 class="text-sm sm:text-base font-black">${r.title}</h4>
+            <p class="text-[11px] text-slate-500 font-semibold truncate">${r.lines[0]}</p>
+          </div>
+        `;
+        listContainer.appendChild(btn);
+      });
+
+      const current = RHYMES_DATA[activeRhymeIdx];
+      const display = document.getElementById('activeRhymeDisplay');
+      display.innerHTML = `
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pb-3 border-b-2 border-yellow-200">
+          <div class="flex items-center gap-3">
+            <span class="text-5xl floating-toy">${current.emoji}</span>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-800">${current.title}</h3>
+              <p class="text-xs font-bold text-slate-500 sinhala-text">${current.siNote}</p>
+            </div>
+          </div>
+          <button onclick="readWholeRhyme()" class="bubble-btn px-5 py-2.5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black text-sm flex items-center gap-2 shadow-lg">
+            <i class="fa-solid fa-play"></i> <span>Sing / Read All</span>
+          </button>
+        </div>
+
+        <div class="space-y-2.5 pt-2">
+          ${current.lines.map((line, lIdx) => `
+            <div id="rhymeLine-${lIdx}" onclick="speakKidText('${line.replace(/'/g, "\\'")}')" class="p-3 rounded-2xl bg-amber-50/70 hover:bg-yellow-100 border-2 border-amber-200 flex items-center justify-between cursor-pointer transition">
+              <span class="text-base sm:text-lg font-bold text-slate-800">${line}</span>
+              <span class="text-xs font-black text-amber-700 flex items-center gap-1">
+                <i class="fa-solid fa-volume-high"></i>
+              </span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function readWholeRhyme() {
+      const current = RHYMES_DATA[activeRhymeIdx];
+      let lineCounter = 0;
+
+      function speakNextLine() {
+        if (lineCounter >= current.lines.length) {
+          addKidStars(2);
+          showKidToast("Splendid Singing! +2 Stars ⭐", "🎶");
+          return;
+        }
+
+        document.querySelectorAll('[id^="rhymeLine-"]').forEach(el => el.classList.remove('bg-yellow-300', 'border-yellow-500'));
+        const lineEl = document.getElementById(`rhymeLine-${lineCounter}`);
+        if (lineEl) lineEl.classList.add('bg-yellow-300', 'border-yellow-500');
+
+        speakKidText(current.lines[lineCounter], () => {
+          lineCounter++;
+          setTimeout(speakNextLine, 250);
+        });
+      }
+
+      speakNextLine();
+    }
+
+    // 7. Illustrated Picture Stories
+    let activeStoryIdx = 0;
+    let storyCurrentScene = 0;
+
+    function renderStoriesWorld() {
+      const bar = document.getElementById('storyTabsBar');
+      bar.innerHTML = '';
+
+      STORIES_DATA.forEach((s, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `bubble-btn flex-shrink-0 px-4 py-2 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 ${
+          idx === activeStoryIdx 
+            ? 'bg-amber-400 text-amber-950 border-2 border-amber-500 shadow-md' 
+            : 'bg-white text-slate-700 border-2 border-slate-200'
+        }`;
+        btn.onclick = () => {
+          activeStoryIdx = idx;
+          storyCurrentScene = 0;
+          renderStoriesWorld();
+        };
+        btn.innerHTML = `<span>${s.emoji}</span><span>${s.title}</span>`;
+        bar.appendChild(btn);
+      });
+
+      const story = STORIES_DATA[activeStoryIdx];
+      const scene = story.scenes[storyCurrentScene];
+      const stage = document.getElementById('activeStoryStage');
+
+      stage.innerHTML = `
+        <div class="flex items-center justify-between pb-3 border-b-2 border-amber-200">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-800">${story.title} (${story.siTitle})</h3>
+            <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
+              Scene ${storyCurrentScene + 1} of ${story.scenes.length}
+            </span>
+          </div>
+          <button onclick="speakKidText('${scene.text.replace(/'/g, "\\'")}')" class="bubble-btn px-4 py-2 rounded-xl bg-yellow-100 text-amber-900 font-black text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-volume-high"></i> Read Scene
+          </button>
+        </div>
+
+        <!-- Illustrated Scene Box -->
+        <div class="py-8 bg-amber-50 rounded-3xl border-3 border-amber-200 text-center space-y-3">
+          <div class="text-7xl floating-toy">${scene.pic}</div>
+          <p class="text-lg sm:text-xl font-black text-slate-800 max-w-lg mx-auto px-4">
+            "${scene.text}"
+          </p>
+          <p class="text-xs sm:text-sm font-bold text-amber-800 sinhala-text max-w-lg mx-auto px-4">
+            ${scene.si}
+          </p>
+        </div>
+
+        <!-- Scene Navigation Controls -->
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="navigateStoryScene(-1)" ${storyCurrentScene === 0 ? 'disabled' : ''} class="bubble-btn px-4 py-2 rounded-2xl bg-slate-100 disabled:opacity-40 font-black text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-chevron-left"></i> Previous
+          </button>
+
+          <!-- Scene Dots -->
+          <div class="flex gap-2">
+            ${story.scenes.map((_, i) => `
+              <div class="w-3.5 h-3.5 rounded-full ${i === storyCurrentScene ? 'bg-amber-500 scale-125' : 'bg-slate-200'} transition"></div>
+            `).join('')}
+          </div>
+
+          <button onclick="navigateStoryScene(1)" class="bubble-btn px-4 py-2 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black text-xs flex items-center gap-1.5 shadow-md">
+            <span>${storyCurrentScene === story.scenes.length - 1 ? 'Finish & Quiz' : 'Next Scene'}</span> <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Moral of the Story -->
+        <div class="mt-4 p-3 bg-gradient-to-r from-amber-100 to-yellow-100 rounded-2xl border-2 border-amber-300 text-center">
+          <span class="text-xs font-black text-amber-900 uppercase">🌟 Moral of the Story:</span>
+          <p class="text-xs sm:text-sm font-black text-amber-950 mt-0.5">${story.moral}</p>
+        </div>
+      `;
+
+      speakKidText(scene.text);
+    }
+
+    function navigateStoryScene(step) {
+      const story = STORIES_DATA[activeStoryIdx];
+      storyCurrentScene += step;
+
+      if (storyCurrentScene >= story.scenes.length) {
+        showStoryComprehensionModal(story);
+        storyCurrentScene = story.scenes.length - 1;
+        return;
+      }
+      renderStoriesWorld();
+    }
+
+    function showStoryComprehensionModal(story) {
+      const stage = document.getElementById('activeStoryStage');
+      stage.innerHTML = `
+        <div class="text-center py-6 space-y-4 max-w-md mx-auto">
+          <span class="text-6xl floating-toy">🏆</span>
+          <h3 class="text-2xl font-black text-slate-800">Story Quiz Time!</h3>
+          <p class="text-sm font-bold text-slate-600">${story.quiz.q}</p>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-2">
+            ${story.quiz.opts.map(opt => `
+              <button onclick="checkStoryAnswer('${opt}', '${story.quiz.ans}')" class="bubble-btn p-3 rounded-2xl bg-white border-3 border-amber-300 hover:bg-amber-100 font-black text-slate-800 text-base shadow-sm">
+                ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div id="storyQuizFeedback" class="h-6 text-sm font-black"></div>
+        </div>
+      `;
+      speakKidText(story.quiz.q);
+    }
+
+    function checkStoryAnswer(selected, correct) {
+      const fb = document.getElementById('storyQuizFeedback');
+      if (selected === correct) {
+        fb.innerHTML = `<span class="text-emerald-600">🎉 Correct! You understood the story! (+3 ⭐)</span>`;
+        addKidStars(3);
+        speakKidText("Super! That is the right answer!");
+        setTimeout(() => {
+          storyCurrentScene = 0;
+          renderStoriesWorld();
+        }, 2200);
+      } else {
+        fb.innerHTML = `<span class="text-rose-500">Oops! Try again! ❤️</span>`;
+        playOopsBoop();
+        speakKidText("Try once more!");
+      }
+    }
+
+    // Animals, Numbers, Colors, Fruits & Speech
+    function renderAnimalsWorld() {
+      const container = document.getElementById('animalsCardsGrid');
+      container.innerHTML = '';
+      ANIMALS_DATA.forEach(a => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 sm:p-5 border-4 border-emerald-200 hover:border-emerald-400 shadow-md flex flex-col justify-between text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${a.name}! The ${a.name} says ${a.sound}. ${a.funFact}`);
+        };
+        card.innerHTML = `
+          <div>
+            <div class="text-5xl sm:text-6xl mb-1 floating-toy">${a.emoji}</div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-800 mt-1">${a.name}</h3>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 mt-1">"${a.sound}"</span>
+            <p class="text-xs font-bold text-slate-500 sinhala-text mt-1.5">${a.si}</p>
+          </div>
+          <div class="mt-3 p-2 bg-emerald-50 rounded-2xl text-[11px] text-emerald-950 font-bold sinhala-text border border-emerald-200">
+            💡 ${a.funFact}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderNumbersWorld() {
+      const container = document.getElementById('numbersCardsGrid');
+      container.innerHTML = '';
+      NUMBERS_DATA.forEach(n => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-3.5 sm:p-4 border-4 border-amber-200 hover:border-amber-400 shadow-md flex flex-col items-center text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${n.num}! ${n.word}.`);
+          addKidStars(1);
+        };
+        card.innerHTML = `
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-white font-black text-2xl flex items-center justify-center shadow-md">
+            ${n.num}
+          </div>
+          <h4 class="text-base sm:text-lg font-black text-slate-800 mt-2">${n.word}</h4>
+          <span class="text-xs font-bold text-amber-700 sinhala-text">${n.si}</span>
+          <div class="text-sm mt-2 max-w-[120px] overflow-hidden truncate">${n.emoji}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderColorsWorld() {
+      const container = document.getElementById('colorsCardsGrid');
+      container.innerHTML = '';
+      COLORS_DATA.forEach(c => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 border-4 border-indigo-200 hover:border-indigo-400 shadow-md flex flex-col items-center text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${c.name}. ${c.example}.`);
+        };
+        card.innerHTML = `
+          <div class="text-5xl mb-1">${c.emoji}</div>
+          <h4 class="text-base sm:text-lg font-black text-slate-800">${c.name}</h4>
+          <span class="text-xs font-bold text-purple-700 sinhala-text mt-0.5">${c.si}</span>
+          <p class="text-[11px] text-slate-500 font-semibold mt-1">${c.example}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderFruitsWorld() {
+      const container = document.getElementById('fruitsCardsGrid');
+      container.innerHTML = '';
+      FRUITS_DATA.forEach(f => {
+        const card = document.createElement('div');
+        card.className = "bubble-btn cursor-pointer bg-white rounded-3xl p-4 border-4 border-rose-200 hover:border-rose-400 shadow-md flex flex-col items-center text-center";
+        card.onclick = () => {
+          playPopSound();
+          speakKidText(`${f.name}! ${f.tip}`);
+        };
+        card.innerHTML = `
+          <div class="text-5xl mb-1 wiggle-on-hover">${f.emoji}</div>
+          <h4 class="text-base sm:text-lg font-black text-slate-800">${f.name}</h4>
+          <span class="text-xs font-bold text-rose-600 sinhala-text mt-0.5">${f.si}</span>
+          <p class="text-[11px] text-slate-600 sinhala-text font-bold mt-1.5 bg-rose-50 p-2 rounded-xl border border-rose-100">
+            ${f.tip}
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderSpeechMagicWorld() {
+      const container = document.getElementById('speechSentencesList');
+      container.innerHTML = '';
+      SPEECH_MAGIC_DATA.forEach((s, idx) => {
+        const box = document.createElement('div');
+        box.className = "bg-white rounded-3xl p-4 sm:p-5 border-4 border-purple-200 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3";
+        box.innerHTML = `
+          <div class="flex items-center gap-3 text-center sm:text-left">
+            <span class="text-4xl">${s.icon}</span>
+            <div>
+              <h4 class="text-lg sm:text-xl font-black text-slate-800">"${s.phrase}"</h4>
+              <p class="text-xs sm:text-sm font-bold text-purple-700 sinhala-text">${s.si}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="speakKidText('${s.phrase.replace(/'/g, "\\'")}')" class="bubble-btn px-4 py-2 rounded-2xl bg-purple-100 hover:bg-purple-200 text-purple-800 font-black text-xs sm:text-sm flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Listen
+            </button>
+            <button id="kidMicBtn-${idx}" onclick="startKidMicrophone('${s.phrase.replace(/'/g, "\\'")}', ${idx})" class="bubble-btn px-4 py-2 rounded-2xl bg-pink-500 hover:bg-pink-600 text-white font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-md">
+              <i class="fa-solid fa-microphone"></i> <span>Say it!</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(box);
+      });
+    }
+
+    function startKidMicrophone(targetText, btnIdx) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const micBtn = document.getElementById(`kidMicBtn-${btnIdx}`);
+
+      if (!SpeechRecognition) {
+        showKidToast("Mic not supported in this browser!", "⚠️");
+        return;
+      }
+
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      micBtn.classList.add('mic-bubble-live');
+      showKidToast("Listening... කතා කරන්න!", "🎤");
+
+      rec.onresult = (e) => {
+        const spoken = e.results[0][0].transcript.toLowerCase();
+        const normTarget = targetText.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+
+        if (spoken.includes(normTarget.split(' ')[0])) {
+          addKidStars(2);
+          showKidToast(`Bravo! You said: "${spoken}" ⭐+2`, "🎉");
+          speakKidText("Super duper! That was magnificent English!");
+        } else {
+          showKidToast(`Heard: "${spoken}". Try once more!`, "💪");
+          speakKidText("Almost there! Try once more sweetheart!");
+        }
+      };
+
+      rec.onend = () => {
+        micBtn.classList.remove('mic-bubble-live');
+      };
+      rec.onerror = () => {
+        micBtn.classList.remove('mic-bubble-live');
+        showKidToast("Didn't catch that. Please speak closely!", "⚠️");
+      };
+      rec.start();
+    }
+
+    /* ================= ARCADE GAMES (MEMORY + SPOT + BUBBLE) ================= */
+    let currentArcadeMode = 'memory';
+
+    function loadArcadeGame(mode) {
+      currentArcadeMode = mode;
+      const modes = ['memory', 'spot', 'bubble'];
+      modes.forEach(m => {
+        const btn = document.getElementById(`arcadeModeBtn-${m}`);
+        if (btn) {
+          if (m === mode) {
+            btn.className = "bubble-btn px-3 py-1.5 rounded-xl text-xs font-black bg-yellow-400 text-yellow-950";
+          } else {
+            btn.className = "bubble-btn px-3 py-1.5 rounded-xl text-xs font-black bg-white/20 hover:bg-white/30 text-white";
+          }
+        }
+      });
+
+      if (mode === 'memory') renderMemoryCardGame();
+      else if (mode === 'spot') renderSpotThePicture();
+      else renderBubbleSpellGame();
+    }
+
+    // A. Memory Match Card Game
+    const MEMORY_CARDS_DEF = [
+      { id: '1', emoji: '🍎', word: 'Apple' },
+      { id: '2', emoji: '🐶', word: 'Dog' },
+      { id: '3', emoji: '🐱', word: 'Cat' },
+      { id: '4', emoji: '🦁', word: 'Lion' }
+    ];
+
+    let memoryDeck = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+
+    function renderMemoryCardGame() {
+      const arena = document.getElementById('arcadeArenaBox');
+      matchedPairs = 0;
+      flippedCards = [];
+
+      // Create dual pairs: 1 emoji card + 1 word card for each
+      memoryDeck = [];
+      MEMORY_CARDS_DEF.forEach(item => {
+        memoryDeck.push({ key: item.id, type: 'emoji', content: item.emoji, sound: item.word });
+        memoryDeck.push({ key: item.id, type: 'word', content: item.word, sound: item.word });
+      });
+      memoryDeck.sort(() => Math.random() - 0.5);
+
+      arena.innerHTML = `
+        <div class="max-w-md w-full space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl sm:text-2xl font-black text-slate-800">Memory Match Magic!</h3>
+            <span id="memMatchesBadge" class="text-xs font-black bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+              Matched: 0 / 4
+            </span>
+          </div>
+          <p class="text-xs font-bold text-slate-500 sinhala-text -mt-2">රූපය සහ ඉංග්‍රීසි වචනය ගැළපෙන කාඩ්පත් දෙක තෝරන්න!</p>
+
+          <div id="memoryGrid" class="grid grid-cols-4 gap-2.5 sm:gap-3 pt-2">
+            ${memoryDeck.map((card, idx) => `
+              <div class="memory-card h-24 sm:h-28" data-index="${idx}" onclick="flipMemoryCard(${idx})">
+                <div class="memory-card-inner">
+                  <div class="memory-card-front bg-gradient-to-tr from-purple-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-black shadow-md border-3 border-purple-300">
+                    ⭐
+                  </div>
+                  <div class="memory-card-back bg-white border-4 border-amber-300 flex items-center justify-center shadow-md p-1">
+                    <span class="${card.type === 'emoji' ? 'text-4xl' : 'text-sm sm:text-base font-black text-slate-800'}">
+                      ${card.content}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      speakKidText("Find matching pictures and words!");
+    }
+
+    function flipMemoryCard(idx) {
+      if (flippedCards.length >= 2) return;
+      const cardEl = document.querySelector(`.memory-card[data-index="${idx}"]`);
+      if (cardEl.classList.contains('flipped')) return;
+
+      playPopSound();
+      cardEl.classList.add('flipped');
+      flippedCards.push({ idx, card: memoryDeck[idx], el: cardEl });
+
+      speakKidText(memoryDeck[idx].sound);
+
+      if (flippedCards.length === 2) {
+        const [c1, c2] = flippedCards;
+        if (c1.card.key === c2.card.key && c1.card.type !== c2.card.type) {
+          // Matched
+          matchedPairs++;
+          document.getElementById('memMatchesBadge').textContent = `Matched: ${matchedPairs} / 4`;
+          flippedCards = [];
+
+          if (matchedPairs === 4) {
+            setTimeout(() => {
+              addKidStars(4);
+              showKidToast("Memory Champion! +4 Stars ⭐", "🎉");
+              speakKidText("Magnificent! You matched all pairs!");
+              setTimeout(renderMemoryCardGame, 2200);
+            }, 600);
+          }
+        } else {
+          // No match, flip back
+          setTimeout(() => {
+            c1.el.classList.remove('flipped');
+            c2.el.classList.remove('flipped');
+            flippedCards = [];
+            playOopsBoop();
+          }, 900);
+        }
+      }
+    }
+
+    // B. Spot The Picture
+    const ARCADE_SPOT_POOL = [
+      { q: "Where is the Elephant?", si: "අලියා සිටින්නේ කොහේද?", correct: "Elephant", opts: ["Cat", "Elephant", "Lion", "Dog"] },
+      { q: "Find the sweet Red Apple!", si: "රතු ඇපල් ගෙඩිය සොයන්න!", correct: "Apple", opts: ["Banana", "Apple", "Mango", "Grapes"] },
+      { q: "Which one is the Sun?", si: "හිරු දෙවියන් සිටින්නේ කොහේද?", correct: "Sun", opts: ["Rainbow", "Sun", "Hat", "Ice Cream"] },
+      { q: "Tap on the playful Dog!", si: "සුරතල් බල්ලා මත ඔබන්න!", correct: "Dog", opts: ["Cow", "Duck", "Dog", "Lion"] }
+    ];
+    let currentSpotQ = null;
+
+    function renderSpotThePicture() {
+      const arena = document.getElementById('arcadeArenaBox');
+      currentSpotQ = ARCADE_SPOT_POOL[Math.floor(Math.random() * ARCADE_SPOT_POOL.length)];
+
+      arena.innerHTML = `
+        <div class="max-w-md w-full space-y-4">
+          <span class="text-4xl floating-toy block">🔍</span>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-800">${currentSpotQ.q}</h3>
+          <p class="text-xs font-bold text-slate-500 sinhala-text -mt-2">${currentSpotQ.si}</p>
+
+          <button onclick="speakKidText('${currentSpotQ.q}')" class="bubble-btn px-4 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-yellow-900 font-black text-xs inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-volume-high"></i> Repeat Audio
+          </button>
+
+          <div class="grid grid-cols-2 gap-3 mt-4">
+            ${currentSpotQ.opts.map(opt => {
+              const obj = ALPHABET_DATA.find(a => a.word.toLowerCase() === opt.toLowerCase()) || 
+                          ANIMALS_DATA.find(a => a.name.toLowerCase() === opt.toLowerCase());
+              const emo = obj ? obj.emoji : "🎁";
+              return `
+                <button onclick="verifySpotAnswer('${opt}')" class="bubble-btn bg-white rounded-3xl p-4 border-4 border-yellow-200 hover:border-yellow-400 flex flex-col items-center shadow-md">
+                  <span class="text-4xl mb-1">${emo}</span>
+                  <span class="text-base font-black text-slate-800">${opt}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+          <div id="spotFeedback" class="h-6 text-sm font-black"></div>
+        </div>
+      `;
+
+      speakKidText(currentSpotQ.q);
+    }
+
+    function verifySpotAnswer(selected) {
+      const fb = document.getElementById('spotFeedback');
+      if (selected === currentSpotQ.correct) {
+        fb.innerHTML = `<span class="text-emerald-600">🎉 Correct! You are brilliant! (+2 ⭐)</span>`;
+        addKidStars(2);
+        speakKidText(`Yes! Fantastic! That is the ${currentSpotQ.correct}!`);
+        setTimeout(renderSpotThePicture, 1800);
+      } else {
+        fb.innerHTML = `<span class="text-rose-500">Oopsie! Try again little friend! ❤️</span>`;
+        playOopsBoop();
+        speakKidText("Try once more!");
+      }
+    }
+
+    // C. Word Bubble Spelling Game
+    const ARCADE_SPELL_POOL = [
+      { word: "CAT", si: "පූසා", emoji: "🐱" },
+      { word: "DOG", si: "බල්ලා", emoji: "🐶" },
+      { word: "SUN", si: "හිරු", emoji: "☀️" },
+      { word: "BALL", si: "බෝලය", emoji: "⚽" }
+    ];
+    let currentSpellQ = null;
+    let spellAnswerProgress = [];
+
+    function renderBubbleSpellGame() {
+      const arena = document.getElementById('arcadeArenaBox');
+      currentSpellQ = ARCADE_SPELL_POOL[Math.floor(Math.random() * ARCADE_SPELL_POOL.length)];
+      spellAnswerProgress = [];
+      const letters = currentSpellQ.word.split('').sort(() => Math.random() - 0.5);
+
+      arena.innerHTML = `
+        <div class="max-w-md w-full space-y-4">
+          <div class="text-5xl floating-toy">${currentSpellQ.emoji}</div>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-800">Spell the Word: "${currentSpellQ.word}"</h3>
+          <p class="text-xs font-bold text-slate-500 sinhala-text -mt-2">අකුරු මත ඔබා වචනය සම්පූර්ණ කරන්න (${currentSpellQ.si})</p>
+
+          <div id="spellSlots" class="flex justify-center gap-2 py-2">
+            ${currentSpellQ.word.split('').map(() => `
+              <div class="w-12 h-14 rounded-2xl border-4 border-dashed border-purple-300 bg-purple-50 flex items-center justify-center font-black text-2xl text-purple-900">
+                ?
+              </div>
+            `).join('')}
+          </div>
+
+          <div id="bubbleLetterBank" class="flex flex-wrap justify-center gap-3 pt-2">
+            ${letters.map(ltr => `
+              <button onclick="popSpellLetter('${ltr}', this)" class="bubble-btn w-12 h-12 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 text-white font-black text-xl shadow-lg flex items-center justify-center">
+                ${ltr}
+              </button>
+            `).join('')}
+          </div>
+          <div id="spellFeedback" class="h-6 text-sm font-black"></div>
+        </div>
+      `;
+
+      speakKidText(`Let's spell the word ${currentSpellQ.word}!`);
+    }
+
+    function popSpellLetter(letter, btnEl) {
+      playPopSound();
+      spellAnswerProgress.push(letter);
+      btnEl.style.visibility = 'hidden';
+
+      const slots = document.getElementById('spellSlots').children;
+      const targetArr = currentSpellQ.word.split('');
+
+      slots[spellAnswerProgress.length - 1].textContent = letter;
+      slots[spellAnswerProgress.length - 1].className = "w-12 h-14 rounded-2xl border-4 border-purple-500 bg-purple-100 flex items-center justify-center font-black text-2xl text-purple-900";
+
+      if (spellAnswerProgress.length === targetArr.length) {
+        const formed = spellAnswerProgress.join('');
+        const fb = document.getElementById('spellFeedback');
+
+        if (formed === currentSpellQ.word) {
+          fb.innerHTML = `<span class="text-emerald-600">🎉 Super! You spelled ${formed}! (+3 ⭐)</span>`;
+          addKidStars(3);
+          speakKidText(`Awesome! ${formed}! You did it!`);
+          setTimeout(renderBubbleSpellGame, 2000);
+        } else {
+          fb.innerHTML = `<span class="text-rose-500">Not quite! Resetting...</span>`;
+          playOopsBoop();
+          setTimeout(renderBubbleSpellGame, 1500);
+        }
+      }
+    }
+
+    /* ================= STICKER ALBUM MODAL ================= */
+    function openStickerAlbumModal() {
+      updateStickerAlbum();
+      document.getElementById('stickerAlbumModal').classList.remove('hidden');
+    }
+
+    function closeStickerAlbumModal() {
+      document.getElementById('stickerAlbumModal').classList.add('hidden');
+    }
+
+    function updateStickerAlbum() {
+      const container = document.getElementById('stickerGridContainer');
+      container.innerHTML = '';
+      let unlockedCount = 0;
+
+      STICKERS_VAULT.forEach(st => {
+        const isUnlocked = kidStars >= st.starsRequired;
+        if (isUnlocked) unlockedCount++;
+
+        const box = document.createElement('div');
+        box.className = `p-3 rounded-2xl border-2 flex flex-col items-center text-center shadow-xs ${
+          isUnlocked 
+            ? 'bg-yellow-50 border-yellow-400' 
+            : 'bg-slate-100 border-slate-200 opacity-60'
+        }`;
+
+        box.innerHTML = `
+          <div class="text-4xl mb-1 ${isUnlocked ? 'wiggle-on-hover' : 'filter grayscale'}">
+            ${isUnlocked ? st.emoji : '🔒'}
+          </div>
+          <span class="text-xs font-black text-slate-800 truncate">${st.name}</span>
+          <span class="text-[10px] font-bold ${isUnlocked ? 'text-emerald-600' : 'text-slate-400'} mt-0.5">
+            ${isUnlocked ? 'Unlocked!' : `${st.starsRequired} ⭐`}
+          </span>
+        `;
+        container.appendChild(box);
+      });
+
+      const pStickers = document.getElementById('parentStickersUnlocked');
+      if (pStickers) pStickers.textContent = `${unlockedCount} / ${STICKERS_VAULT.length}`;
+    }
+
+    /* ================= MAIN NAVIGATION ROUTING ================= */
+    function switchCategory(cat) {
+      const allWorlds = [
+        'alphabet', 'body', 'family', 'school', 'weather', 
+        'rhymes', 'stories', 'animals', 'numbers', 'colors', 
+        'fruits', 'speechmagic', 'arcade', 'parents'
+      ];
+
+      allWorlds.forEach(w => {
+        const sec = document.getElementById(`world-${w}`);
+        const tab = document.getElementById(`tabNav-${w}`);
+        const mob = document.getElementById(`mobNav-${w}`);
+
+        if (sec) {
+          if (w === cat) sec.classList.remove('hidden');
+          else sec.classList.add('hidden');
+        }
+
+        if (tab) {
+          if (w === cat) {
+            tab.className = "bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md";
+          } else {
+            tab.className = "bubble-btn flex-shrink-0 px-3.5 py-2 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 bg-white text-slate-700 border-2 border-slate-200";
+          }
+        }
+
+        if (mob) {
+          if (w === cat) {
+            mob.className = "mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-pink-600 font-black";
+          } else {
+            mob.className = "mobile-nav-btn flex flex-col items-center justify-center p-1.5 rounded-xl text-slate-500 font-bold";
+          }
+        }
+      });
+
+      playPopSound();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Trigger lazy sub-renders
+      if (cat === 'rhymes') renderRhymesWorld();
+      if (cat === 'stories') renderStoriesWorld();
+      if (cat === 'arcade') loadArcadeGame(currentArcadeMode);
+      if (cat === 'parents') updateStickerAlbum();
+    }
+
+    /* ================= INIT APPLICATION ================= */
+    window.onload = function() {
+      setKidsTeacherVoice(activeTeacherGender);
+      renderAlphabetWorld();
+      renderBodyWorld();
+      renderFamilyWorld();
+      renderSchoolWorld();
+      renderDaysAndWeatherWorld();
+      renderRhymesWorld();
+      renderStoriesWorld();
+      renderAnimalsWorld();
+      renderNumbersWorld();
+      renderColorsWorld();
+      renderFruitsWorld();
+      renderSpeechMagicWorld();
+      document.getElementById('kidTotalStarsBadge').textContent = kidStars;
+      document.getElementById('albumStarsCount').textContent = `${kidStars} ⭐`;
+      updateStickerAlbum();
+    };
+  </script>
+</body>
+</html>
